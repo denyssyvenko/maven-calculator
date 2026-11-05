@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор</title>
+</head>
+<body>
+    <h1>Калькулятор</h1>
+    <input type="text" id="expression" placeholder="Наприклад: 2+2" size="30">
+    <button onclick="calculate()">Обчислити</button>
+    <p>Результат: <b id="result"></b></p>
+
+    <script>
+        async function calculate() {
+            const expr = document.getElementById("expression").value;
+            const response = await fetch("/calculate?expression=" + encodeURIComponent(expr));
+            document.getElementById("result").textContent = await response.text();
+        }
+    </script>
+</body>
+</html>
